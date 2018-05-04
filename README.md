@@ -1,6 +1,9 @@
 # A Frame Marker Tagger
 Generic helper function for tagging markers
 
+## Dependencies
+This framework uses AJAX, so you need to have JQuery included before this file
+
 ## Usage
 Simply include the `marker_tagger.js` file as a script tag at the end of your html/php file
 
