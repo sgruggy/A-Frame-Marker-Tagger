@@ -79,8 +79,43 @@ Example:
 </body>
 ```
 
-## In-Depth Guide
+## Step-by-step Guide
 
-There is already a `markers` array defined in `marker_tagger.js`. This is where your markers will be stored. 
+1. Create a file called `markers.json` to store an array of Objects to parse as your marker data
+2. Add the following lines inside the `<a-scene>` tag in your `index.php` file:
 
-The function `matchMarkers(callback)` takes in a callback function that you will have to define yourself.
+```
+<?php
+$myfile = fopen("markers.json", "r") or die("Unable to open file!");
+$decoded = json_decode(fread($myfile, filesize('markers.json')));
+
+for($i = 0; $i < sizeof($decoded); $i++){
+	echo '<a-marker id="' . $i .'" preset="custom" url="markers/' . $i . '.patt"></a-marker>';
+}
+	fclose($myfile);
+?>
+```
+
+This reads the file and creates the number of `<a-marker>` tags with enumerated IDs equal to the number of objects in your `markers.json`.
+
+3. In your `sketch.js` file, create a callback function for what you want to happen when a marker is found
+Example:
+
+```
+//Callback function, prints the data of the marker
+function markerFound(data) {
+    console.log("Marker found with data:", data);
+}
+```
+This will be passed into the higher-order function
+
+4. In your `setup()` function, pass in your callback function to `matchMarkers()`
+Example:
+```
+function setup() {
+  matchMarkers(markerFound);
+  //rest of setup
+}
+```
+
+5. 
