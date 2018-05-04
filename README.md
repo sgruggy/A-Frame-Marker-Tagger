@@ -34,9 +34,9 @@ Example:
 
 Example:
 ```
-//Callback function, prints the ID of the marker
-function markerFound(marker) {
-    console.log("Marker found, id:", marker.id);
+//Callback function, prints the data of the marker
+function markerFound(data) {
+    console.log("Marker found with data:", data);
 }
 
 //Aframe P5 Setup
@@ -58,3 +58,8 @@ function draw() {
 }
 ```
 
+## In-Depth Guide
+
+There is already a `markers` array defined in `marker_tagger.js`. This is where your markers will be stored. 
+
+The function `matchMarkers(callback)` takes in a callback function that you will have to define yourself.
