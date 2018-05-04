@@ -118,4 +118,23 @@ function setup() {
 }
 ```
 
-5. 
+5. Modify your `draw()` function to only search for markers if a marker is not found by creating a boolean variable, initially set to false. Set it to true once a marker is found, but make sure you have a function that sets it back to false, otherwise your program will only search once.
+
+6. Call `executeFound()` on a marker if it's found.
+Example:
+```
+function draw() {
+  if (!found) {
+    for (let i = 0; i < markers.length; i++) {
+      if (markers[i].isVisible()) {
+        const thisMarker = markers[i];
+        world.clearDrawingCanvas();
+        found = true;
+        thisMarker.executeFound();
+      }
+    }
+  }
+}
+```
+
+All set! 
