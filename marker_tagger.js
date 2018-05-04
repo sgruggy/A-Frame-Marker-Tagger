@@ -23,9 +23,6 @@ function matchMarkers(callback) {
 }
 
 function Marker(id, world, data) {
-  if (data) {
-    this.data = data;
-  }
   // store a reference to the world
   this.worldRef = world;
 
@@ -94,6 +91,10 @@ function Marker(id, world, data) {
       x: vector.x,
       y: vector.y
     };
+  }
+  
+  if (data) {
+    this.data = data;
   }
 
   this.executeFound = function () {
