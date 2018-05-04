@@ -29,3 +29,32 @@ Example:
 ]
 ```
 
+- a callback function to be executed each time a marker is found
+- a condition to stop the search
+
+Example:
+```
+//Callback function, prints the ID of the marker
+function markerFound(marker) {
+    console.log("Marker found, id:", marker.id);
+}
+
+//Aframe P5 Setup
+function setup() {
+  matchMarkers(markerFound);
+}
+
+function draw() {
+  if (!found) {
+    for (let i = 0; i < markers.length; i++) {
+      if (markers[i].isVisible()) {
+        const thisMarker = markers[i];
+        world.clearDrawingCanvas();
+        found = true;
+        thisMarker.executeFound();
+      }
+    }
+  }
+}
+```
+
