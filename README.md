@@ -68,7 +68,7 @@ Example:
 		$decoded = json_decode(fread($myfile, filesize('markers.json')));
 
 		for($i = 0; $i < sizeof($decoded); $i++){
-			echo '<a-marker class="artwork" id="' . $i .'" preset="custom" url="markers/' . $i . '.patt"></a-marker>';
+			echo '<a-marker id="' . $i .'" preset="custom" url="markers/' . $i . '.patt"></a-marker>';
 		}
 		fclose($myfile);
 		?>
