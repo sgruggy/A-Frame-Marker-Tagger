@@ -57,6 +57,27 @@ function draw() {
   }
 }
 ```
+- an index.php file where you will need to dynamically create <a-marker> elements for each piece of data
+
+Example:
+```
+<body>
+    <a-scene id="ARScene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono;'>
+        <?php
+		$myfile = fopen("markers.json", "r") or die("Unable to open file!");
+		$decoded = json_decode(fread($myfile, filesize('markers.json')));
+
+		for($i = 0; $i < sizeof($decoded); $i++){
+			echo '<a-marker class="artwork" id="' . $i .'" preset="custom" url="markers/' . $i . '.patt"></a-marker>';
+		}
+		fclose($myfile);
+		?>
+        <a-entity camera></a-entity>
+    </a-scene>
+    
+    <!-- rest of body -->
+</body>
+```
 
 ## In-Depth Guide
 
